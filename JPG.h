@@ -7,7 +7,7 @@
 
 class JPG : public AbstractImage {
 public:
-    JPG(const std::string& name, const std::string& path);
+    JPG(const std::string& path, const std::string& name);
 
     void save() override;
 };

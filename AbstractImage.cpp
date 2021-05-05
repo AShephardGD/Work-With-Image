@@ -222,7 +222,6 @@ void AbstractImage::inverse() {
             pixelAt(i, j).red =   255 - pixelAt(i, j).red;
             pixelAt(i, j).green = 255 - pixelAt(i, j).green;
             pixelAt(i, j).blue =  255 - pixelAt(i, j).blue;
-            pixelAt(i, j).alpha = 255 - pixelAt(i, j).alpha;
         }
     }
 }
