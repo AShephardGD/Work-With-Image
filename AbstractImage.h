@@ -70,17 +70,17 @@ public:
     virtual ~AbstractImage() = default;
 
     void inverse();                             //Инверсия цветов
-    void scale(double k);                       //Изменение размеров с сохранением пропорции
+    void scale(double percent);                 //Изменение размеров с сохранением пропорции
     void whiteBlack();                          //Черно-белый
     void reflect(Reflections reflection);       //Симметрия и поворот на 90 градусов
     void sepia();                               //Сепия
     void greyscale();                           //Оттенки серого
-    void brightness(double k);                  //Яркость
+    void brightness(double percent);            //Яркость
     void toAverage();                           //Усреднение цвета пикселей
 
-    void extractRed();                          //Удалить красный
-    void extractBlue();                         //Удалить синий
-    void extractGreen();                        //Удалить зеленый
+    void gammaRed(double percent);              //Контраст красного
+    void gammaBlue(double percent);             //Контраст синего
+    void gammaGreen(double percent);            //Контраст зеленого
 
     void resizeWidth(size_t width);             //Изменить ширину
     void resizeHeight(size_t height);           //Изменить высоту

@@ -226,8 +226,8 @@ void AbstractImage::inverse() {
     }
 }
 
-void AbstractImage::scale(double k) {
-    size_t newWidth = k * width(), newHeight = k * height();
+void AbstractImage::scale(double percent) {
+    size_t newWidth = percent * width() / 100, newHeight = percent * height() / 100;
     resizeWidth(newWidth);
     resizeHeight(newHeight);
 }
@@ -312,8 +312,8 @@ void AbstractImage::greyscale() {
 
 }
 
-void AbstractImage::brightness(double k) {
-    k /= 100;
+void AbstractImage::brightness(double percent) {
+    double k = percent / 100;
     for (size_t i = 0; i < height(); ++i) {
         for (size_t j = 0; j < width(); ++j) {
             pixelAt(i, j).applyFilter(k, 0, 0,
@@ -333,31 +333,34 @@ void AbstractImage::toAverage() {
     }
 }
 
-void AbstractImage::extractRed() {
+void AbstractImage::gammaRed(double percent) {
+    double k = percent / 100;
     for (size_t i = 0; i < height(); ++i) {
         for (size_t j = 0; j < width(); ++j) {
-            pixelAt(i, j).applyFilter(0, 0, 0,
+            pixelAt(i, j).applyFilter(k, 0, 0,
                                       0, 1, 0,
                                       0, 0, 1);
         }
     }
 }
 
-void AbstractImage::extractBlue() {
+void AbstractImage::gammaBlue(double percent) {
+    double k = percent / 100;
     for (size_t i = 0; i < height(); ++i) {
         for (size_t j = 0; j < width(); ++j) {
             pixelAt(i, j).applyFilter(1, 0, 0,
                                       0, 1, 0,
-                                      0, 0, 0);
+                                      0, 0, k);
         }
     }
 }
 
-void AbstractImage::extractGreen() {
+void AbstractImage::gammaGreen(double percent) {
+    double k = percent / 100;
     for (size_t i = 0; i < height(); ++i) {
         for (size_t j = 0; j < width(); ++j) {
             pixelAt(i, j).applyFilter(1, 0, 0,
-                                      0, 0, 0,
+                                      0, k, 0,
                                       0, 0, 1);
         }
     }
